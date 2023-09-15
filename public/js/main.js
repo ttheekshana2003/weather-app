@@ -8,27 +8,45 @@ document.addEventListener('DOMContentLoaded', () => {
     weatherForm.addEventListener('submit', async(e) => {
         e.preventDefault();
         const city = cityInput.value;
-        const unit = unitSelect.value;
-        const apiUrl = '/getWeather'; // Place it here
 
         try {
-            console.log(apiUrl)
-            const response = await fetch(apiUrl, {
+            const response = await fetch('/newWeather', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ city, unit }),
+                body: JSON.stringify({ city }), // Send only the city in the request body
             });
 
             if (response.ok) {
                 const data = await response.json();
-                // Extract weather data and update the UI
+
+                const unit = 'metric';
+                const name = data.name;
+                const region = data.region;
+                const country = data.country;
                 const temperature = data.temperature;
                 const description = data.description;
+                const clouds = data.clouds;
+                const wind_speed = data.wind_speed;
+                const wind_deg = data.wind_deg;
+                const wind_dir = data.wind_dir;
+                const wind_gust = data.wind_gust;
 
-                weatherInfo.innerHTML = `<p>Temperature: ${temperature} °${unit === 'metric' ? 'C' : 'F'}</p>
-                                     <p>Weather: ${description}</p>`;
+                weatherInfo.innerHTML = `<div class="card" style="width: 18rem;">
+                                            <div class="card-body">
+                                            <h5 class="card-title">${name}</h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary">${region}, ${country}</h6>
+                                            <ul class="list-group">
+                                            <li class="list-group-item"><p class="card-text">Temperature: ${temperature} °${unit === 'metric' ? 'C' : 'F'}</p></li>
+                                            <li class="list-group-item"><p class="card-text">Weather: ${description}</p></li>
+                                            <li class="list-group-item"><p class="card-text">Cloud coverage: ${clouds}%</p></li>
+                                            <li class="list-group-item"><p class="card-text">Wind Speed: ${wind_speed}${unit === 'metric' ? 'km/h' : 'mph'}</p></li>
+                                            <li class="list-group-item"><p class="card-text">Wind Direction: ${wind_dir} ${wind_deg}°</p></li>
+                                            <li class="list-group-item"><p class="card-text">Gust: ${wind_gust}${unit === 'metric' ? 'km/h' : 'mph'}</p></li>
+                                            </ul>
+                                            </div>
+                                        </div>`;
 
                 // Update weather icon or background image based on weather conditions
                 const weatherCondition = description.toLowerCase();
@@ -41,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 console.error('Error fetching weather data 1:', response.statusText);
-                weatherInfo.innerHTML = 'Error fetching weather data 1';
+                weatherInfo.innerHTML = '<div class="text-bg-danger p-3">Error fetching weather data.</div>';
             }
         } catch (error) {
             console.error('Error:', error);
-            weatherInfo.innerHTML = 'Error fetching weather data 2';
+            weatherInfo.innerHTML = '<div class="text-bg-danger p-3">Error fetching weather data.</div>';
         }
     });
 });

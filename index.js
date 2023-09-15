@@ -5,28 +5,46 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json()); // Add this line to parse JSON requests
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.post('/getWeather', async(req, res) => {
-    const { city, unit } = req.body;
-    const apiKey = 'e84610afaf8334e9192095415c707d82'; // Replace with your API key
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+app.get('/about', (req, res) => {
+    res.render('about'); //
+});
+
+app.post('/newWeather', async(req, res) => {
+    const { city } = req.body;
+    const apiKey = 'eff503e6fbbc4dfba51181344222612';
+    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;
 
     try {
         const response = await axios.get(apiUrl);
         const data = response.data;
 
-        // Extract weather data and send it as JSON response
-        const temperature = data.main.temp;
-        const description = data.weather[0].description;
-
+        const name = data.location.name;
+        const region = data.location.region;
+        const country = data.location.country;
+        const temperature = data.current.temp_c;
+        const description = data.current.condition.text;
+        const clouds = data.current.cloud;
+        const wind_speed = data.current.wind_kph;
+        const wind_deg = data.current.wind_degree;
+        const wind_dir = data.current.wind_dir;
+        const wind_gust = data.current.gust_kph;
         res.json({
+            name,
+            region,
+            country,
             temperature,
             description,
+            clouds,
+            wind_speed,
+            wind_deg,
+            wind_dir,
+            wind_gust
         });
     } catch (error) {
         console.error('Error fetching weather data:', error);
