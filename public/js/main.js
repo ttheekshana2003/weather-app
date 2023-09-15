@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const city = cityInput.value;
         const unit = unitSelect.value;
-        const apiKey = 'YOUR_API_KEY'; // Replace with your API key
         const apiUrl = '/getWeather'; // Place it here
 
         try {
+            console.log(apiUrl)
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     weatherIcon.style.backgroundImage = ''; // Clear background image
                 }
             } else {
-                console.error('Error fetching weather data:', response.statusText);
-                weatherInfo.innerHTML = 'Error fetching weather data';
+                console.error('Error fetching weather data 1:', response.statusText);
+                weatherInfo.innerHTML = 'Error fetching weather data 1';
             }
         } catch (error) {
             console.error('Error:', error);
-            weatherInfo.innerHTML = 'Error fetching weather data';
+            weatherInfo.innerHTML = 'Error fetching weather data 2';
         }
     });
 });
