@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const unitSelect = document.getElementById('unit-select');
     const weatherInfo = document.getElementById('weather-info');
     const weatherIcon = document.getElementById('weather-icon');
+    const defaultCity = 'Nildandahinna';
+    cityInput.value = defaultCity;
 
-    weatherForm.addEventListener('submit', async(e) => {
-        e.preventDefault();
-        const city = cityInput.value;
-
+    const fetchWeatherData = async(city) => {
         try {
             const response = await fetch('/newWeather', {
                 method: 'POST',
@@ -65,5 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error:', error);
             weatherInfo.innerHTML = '<div class="text-bg-danger p-3">Error fetching weather data.</div>';
         }
+    };
+
+    fetchWeatherData(defaultCity);
+
+    weatherForm.addEventListener('submit', async(e) => {
+        e.preventDefault();
+        const city = cityInput.value;
+        fetchWeatherData(city);
     });
+
 });
