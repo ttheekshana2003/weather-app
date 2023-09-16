@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 console.error('Error fetching weather data 1:', response.statusText);
-                weatherInfo.innerHTML = '<div class="text-bg-danger p-3">Error fetching weather data.</div>';
+                weatherInfo.innerHTML = '<div class="text-bg-danger p-3"><i class="bx bx-error"></i> Error fetching weather data.</div>';
             }
         } catch (error) {
             console.error('Error:', error);
-            weatherInfo.innerHTML = '<div class="text-bg-danger p-3">Error fetching weather data.</div>';
+            weatherInfo.innerHTML = '<div class="text-bg-danger p-3"><i class="bx bx-error"></i> Error fetching weather data.</div>';
         }
     };
 

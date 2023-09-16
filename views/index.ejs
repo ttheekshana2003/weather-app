@@ -4,63 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
     <title>Weather App</title>
 </head>
 
-<body class="bg-dark">
-    <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-        <div class=" container-fluid ">
-            <a class="navbar-brand " href="/ ">Weather App</a>
-            <button class="navbar-toggler " type="button " data-bs-toggle="collapse " data-bs-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
+<body>
+    <div class="main-content">
+        <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class=" container-fluid ">
+                <a class="navbar-brand" href="/ " id="logo">AnemoiWeather</a>
+                <button class=" navbar-toggler " type="button " data-bs-toggle="collapse " data-bs-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
             <span class="navbar-toggler-icon "></span>
           </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item ">
-                        <a class="nav-link active " aria-current="page " href="/ ">Home</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link " href="/about ">About</a>
-                    </li>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item ">
+                            <a class="nav-link active " aria-current="page " href="/ ">
+                                <box-icon name='home' color="#fff" size="20px"></box-icon>Home</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="/about ">
+                                <box-icon name='info-circle' color="#fff"></box-icon> About</a>
+                        </li>
 
-                </ul>
-                <form form id="weather-form" class="d-flex ">
-                    <input class="form-control me-2 " type="text" id="city-input" placeholder="Enter a city" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                    </ul>
+                    <form form id="weather-form " class="d-flex ">
+                        <input class="form-control me-2 " type="text " id="city-input " style="border-radius: 20px;" placeholder="Type a city or a zipcode" autocomplete="off" aria-label="Search ">
+                        <button class="btn btn-outline-success " id="city-submit " style="border-radius: 20px;" type="submit ">Search</button>
+                    </form>
 
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <div id="weather-info">
-        <div class="card" aria-hidden="true" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title placeholder-glow">
-                    <span class="placeholder col-10"></span>
-                </h5>
-                <h6 class="card-subtitle mb-2 placeholder-glow">
-                    <span class="placeholder col-8"></span>
-                </h6>
-                <ul class="list-group placeholder-glow">
-                    <li class="list-group-item"><span class="placeholder col-7"></span></li>
-                    <li class="list-group-item"><span class="placeholder col-7"></span></li>
-                    <li class="list-group-item"><span class="placeholder col-6"></span></li>
-                    <li class="list-group-item"><span class="placeholder col-7"></span></li>
-                    <li class="list-group-item"><span class="placeholder col-5"></span></li>
-                    <li class="list-group-item"><span class="placeholder col-7"></span></li>
-                </ul>
+        <div id="weather-info ">
+            <div class="card " aria-hidden="true " style="width: 18rem; ">
+                <div class="card-body ">
+                    <h5 class="card-title placeholder-glow ">
+                        <span class="placeholder col-10 "></span>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 placeholder-glow ">
+                        <span class="placeholder col-8 "></span>
+                    </h6>
+                    <ul class="list-group placeholder-glow ">
+                        <li class="list-group-item "><span class="placeholder col-7 "></span></li>
+                        <li class="list-group-item "><span class="placeholder col-7 "></span></li>
+                        <li class="list-group-item "><span class="placeholder col-6 "></span></li>
+                        <li class="list-group-item "><span class="placeholder col-7 "></span></li>
+                        <li class="list-group-item "><span class="placeholder col-5 "></span></li>
+                        <li class="list-group-item "><span class="placeholder col-7 "></span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div id="weather-icon">
+    <div id="weather-icon ">
         <!-- Display weather icon or background image here -->
     </div>
-    <script src="/js/main.js"></script>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ">
+        <div class="col-md-4 d-flex align-items-center ">
+            <a href="/ " class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1 ">
+                <svg class="bi " width="30 " height="24 "><use xlink:href="#bootstrap "></use></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted ">© 2023 T.Theekshana</span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex ">
+            <li class="ms-3 ">
+                <a class="text-muted " title="Github " href="//github.com/ttheekshana2003/weather-app ">
+                    <box-icon color="gray " size="40px " type='logo' name='github'></box-icon>
+                </a>
+            </li>
+            <li class="ms-3 ">
+                <a class="text-muted " href="# " title="Reddit ">
+                    <box-icon color="gray " size="40px " type='logo' name='reddit' pull="left "></box-icon>
+                </a>
+            </li>
+            <li class="ms-3 ">
+                <a href="https://www.weatherapi.com/ " title="Free Weather API " target="_blank ">
+                    <img style="width: 65%; " src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png " alt="Weather data by WeatherAPI.com " border="0 ">
+                </a>
+            </li>
+        </ul>
+    </footer>
+    <script src="/js/main.js "></script>
 </body>
+
+
 
 </html>

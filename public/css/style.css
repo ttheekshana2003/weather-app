@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Nova+Mono&display=swap');
+body {
+    font-family: 'Manrope', sans-serif;
+}
+
+#logo {
+    font-family: 'Nova Mono', monospace;
+}
+
+#city-input,
+#city-submit {
+    border-radius: 20px;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+footer {
+    padding: 20px;
+}
